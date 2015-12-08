@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h3>Dislike #<%= @dislike.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Smack</dt>
+      <dd><%= @dislike.smack_id %></dd>
+
+      <dt>User</dt>
+      <dd><%= @dislike.user_id %></dd>
+
+      <dt>Response</dt>
+      <dd><%= @dislike.response_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/dislikes" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/dislikes/<%= @dislike.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_dislike/<%= @dislike.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

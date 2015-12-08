@@ -1,0 +1,77 @@
+<!-- Validation failure messages -->
+<% if @smack.errors.any? %>
+  <% @smack.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Talk Some Trash</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form enctype="multipart/form-data" action="/create_smack" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for title -->
+      <div class="form-group">
+        <label for="title" class="control-label">
+          Title
+        </label>
+
+        <input type="text" id="title" name="title" placeholder="Title" class="form-control">
+      </div>
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @smack.body %></textarea>
+      </div>
+
+      <!-- Label and input for image -->
+      <div class="form-group">
+        <label for="image" class="control-label">
+          Image
+        </label>
+
+        <input type="file" id="image" name="image" placeholder="Image" class="form-control" value="<%= @smack.image %>">
+      </div>
+
+      <!-- Label and input for video -->
+      <div class="form-group">
+        <label for="video" class="control-label">
+          Video
+        </label>
+
+        <input type="text" id="video" name="video" placeholder="Video" class="form-control">
+      </div>
+
+      <!-- Label and input for league_id -->
+      <div class="form-group">
+        <label for="league_id" class="control-label">
+          League
+        </label>
+
+        <input type="integer" id="league_id" name="league_id" placeholder="League" class="form-control" value="<%= @smack.league_id %>">
+      </div>
+
+      <!-- Input for user_id -->
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Smack
+      </button>
+      or
+      <a href="/smacks">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="page-header">
+  <div class="jumbotron">
+    <h3><%= @user.username %></h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl>
+      <dt><img src="<%= @user.avatar %>" width="150"></dt>
+
+      <dt>Biography:</dt>
+      <dd><%= @user.bio %></dd>
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/users" class="btn btn-primary">Back</a>
+    </div>
+
+  </div>
+</div>
+
+

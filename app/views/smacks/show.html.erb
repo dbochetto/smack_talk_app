@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Smack #<%= @smack.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Title</dt>
+      <dd><%= @smack.title %></dd>
+
+      <dt>Body</dt>
+      <dd><%= @smack.body %></dd>
+
+      <dt>Image</dt>
+      <dd><%= @smack.image %></dd>
+
+      <dt>Video</dt>
+      <dd><%= @smack.video %></dd>
+
+      <dt>League</dt>
+      <dd><%= @smack.league_id %></dd>
+
+      <dt>User</dt>
+      <dd><%= @smack.user_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/smacks" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/smacks/<%= @smack.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_smack/<%= @smack.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

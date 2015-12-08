@@ -1,0 +1,82 @@
+<!-- Validation failure messages -->
+<% if @response.errors.any? %>
+  <% @response.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Response #<%= @response.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_response/<%= @response.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @response.body %></textarea>
+      </div>
+
+      <!-- Label and input for image -->
+      <div class="form-group">
+        <label for="image" class="control-label">
+          Image
+        </label>
+
+        <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @response.image %>">
+      </div>
+
+      <!-- Label and input for video -->
+      <div class="form-group">
+        <label for="video" class="control-label">
+          Video
+        </label>
+
+        <input type="text" id="video" name="video" placeholder="Video" class="form-control" value="<%= @response.video %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @response.user_id %>">
+      </div>
+
+      <!-- Label and input for publication_id -->
+      <div class="form-group">
+        <label for="publication_id" class="control-label">
+          Publication
+        </label>
+
+        <input type="text" id="publication_id" name="publication_id" placeholder="Publication" class="form-control" value="<%= @response.publication_id %>">
+      </div>
+
+      <!-- Label and input for smack_id -->
+      <div class="form-group">
+        <label for="smack_id" class="control-label">
+          Smack
+        </label>
+
+        <input type="text" id="smack_id" name="smack_id" placeholder="Smack" class="form-control" value="<%= @response.smack_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Response
+      </button>
+      or
+      <a href="/responses/<%= @response.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
