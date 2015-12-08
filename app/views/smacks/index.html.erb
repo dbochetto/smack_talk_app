@@ -41,7 +41,7 @@
                 <% end %>
                 <% like = smack.likes.find_by({ :user_id => current_user.id }) %>
                 <% if like.present? %>
-                <a href="/delete_like/<%= like.id %>" class="btn btn-link">
+                  <a href="/delete_like/<%= like.id %>" class="btn btn-link">
                   <i class="fa fa-thumbs-up"></i> </a>
                   (<%= smack.likes.count %>)
                   <% if l_usernames.count > 1 %>
@@ -50,7 +50,7 @@
                   <%= l_usernames.to_sentence %> agrees
                   <% else %>
                   <% end %>
-                  <% else %>
+                <% else %>
                   <form action="/create_like" method="post">
                     <!-- Hidden input for authenticity token to protect from forgery -->
                     <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
@@ -72,8 +72,8 @@
                     <% end %>
                   </form>
                   <!-- End code for Likes-->
-                  <% end %>
-                </li>
+                <% end %>
+              </li>
 
 
                 <!-- Code for Disikes-->
@@ -84,7 +84,7 @@
                   <% end %>
                   <% dislike = smack.dislikes.find_by({ :user_id => current_user.id }) %>
                   <% if dislike.present? %>
-                  <a href="/delete_dislike/<%= dislike.id %>" class="btn btn-link">
+                    <a href="/delete_dislike/<%= dislike.id %>" class="btn btn-link">
                     <i class="fa fa-thumbs-down"></i> </a>
                     (<%= smack.dislikes.count %>)
                     <% if d_usernames.count > 1 %>
@@ -93,7 +93,7 @@
                     <%= d_usernames.to_sentence %> disagrees
                     <% else %>
                     <% end %>
-                    <% else %>
+                  <% else %>
                     <form action="/create_dislike" method="post">
                       <!-- Hidden input for authenticity token to protect from forgery -->
                       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
@@ -115,10 +115,10 @@
                       <% end %>
                     </form>
                     <!-- End code for Dislikes-->
-                    <% end %>
-                  </li>
-                </ul>
-              </div>
+                  <% end %>
+                </li>
+            </ul>
+          </div>
               <!-- End like/dislike code-->
 
 
@@ -145,7 +145,7 @@
                           <% end %>
                           <% like = response.likes.find_by({ :user_id => current_user.id }) %>
                           <% if like.present? %>
-                          <a href="/delete_like/<%= like.id %>" class="btn btn-link">
+                            <a href="/delete_like/<%= like.id %>" class="btn btn-link">
                             <i class="fa fa-thumbs-up"></i> </a>
                             (<%= response.likes.count %>)
                             <% if l_resp_usernames.count > 1 %>
@@ -154,7 +154,7 @@
                             <%= l_resp_usernames.to_sentence %> agrees
                             <% else %>
                             <% end %>
-                            <% else %>
+                           <% else %>
                             <form action="/create_like" method="post">
                               <!-- Hidden input for authenticity token to protect from forgery -->
                               <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
@@ -179,8 +179,8 @@
                               <% else %>
                               <% end %>
                             </form>
-                            <% end %>
-                          </li>
+                          <% end %>
+                        </li>
 
                           <!-- End code for likes for responses-->
                           <!-- Code for dislikes for responses-->
@@ -192,7 +192,7 @@
                             <% end %>
                             <% dislike = response.dislikes.find_by({ :user_id => current_user.id }) %>
                             <% if dislike.present? %>
-                            <a href="/delete_dislike/<%= dislike.id %>" class="btn btn-link">
+                              <a href="/delete_dislike/<%= dislike.id %>" class="btn btn-link">
                               <i class="fa fa-thumbs-down"></i> </a>
                               (<%= response.dislikes.count %>)
                               <% if d_resp_usernames.count > 1 %>
@@ -201,7 +201,7 @@
                               <%= d_resp_usernames.to_sentence %> disagrees
                               <% else %>
                               <% end %>
-                              <% else %>
+                            <% else %>
                               <form action="/create_dislike" method="post">
                                 <!-- Hidden input for authenticity token to protect from forgery -->
                                 <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
@@ -226,41 +226,41 @@
                                 <% else %>
                                 <% end %>
                               </form>
-                              <% end %>
+                            <% end %>
                               <!-- End code for dislikes for responses-->
-                            </li>
-                          </ul>
-                        </div>
-                        </div>
-                      </li>
-                      <% end %>
+                          </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <% end %>
                       <!-- End code for existing responses-->
 
 
                       <!-- Code for new response form-->
-                      <li class="media">
-                        <div class="media-body">
-                          <form action="/create_response" method="post">
-                            <!-- Hidden input for authenticity token to protect from forgery -->
-                            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                <li class="media">
+                  <div class="media-body">
+                    <form action="/create_response" method="post">
+                      <!-- Hidden input for authenticity token to protect from forgery -->
+                      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-                            <!-- Label and input for body -->
-                            <input type="text" id="body" name="body" placeholder="Respond to this smack..." class="form-control">
+                      <!-- Label and input for body -->
+                      <input type="text" id="body" name="body" placeholder="Respond to this smack..." class="form-control">
 
-                            <!-- Label and input for user_id -->
-                            <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+                      <!-- Label and input for user_id -->
+                      <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
 
-                            <!-- Label and input for smack_id -->
-                            <input type="hidden" id="smack_id" name="smack_id" placeholder="Smack" class="form-control" value="<%= smack.id %>">
-                          </div>
-                        </form>
-                      </div>
-                    </li>
+                      <!-- Label and input for smack_id -->
+                      <input type="hidden" id="smack_id" name="smack_id" placeholder="Smack" class="form-control" value="<%= smack.id %>">
+                    </form>
+                  </div>
+                </li>
                     <!-- End code for new response form-->
-                  </ul>
+              </ul>
 
-                </div>
-              </div>
-            </div>
-            <% end %>
-          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <% end %>
