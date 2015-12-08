@@ -47,4 +47,13 @@ class LeaguesController < ApplicationController
 
     redirect_to "/leagues", :notice => "League deleted."
   end
+
+  def smacks
+    @smacks = Smack.where(:league_id => params[:id])
+  end
+
+  def publications
+    @publications = Publication.where(:league_id => params[:id])
+  end
+
 end

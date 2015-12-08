@@ -18,7 +18,7 @@ class DislikesController < ApplicationController
     @dislike.response_id = params[:response_id]
 
     if @dislike.save
-      redirect_to "/smacks", :notice => "Dislike created successfully."
+      redirect_to :back, :notice => "Dislike created successfully."
     else
       render 'new'
     end
@@ -47,6 +47,6 @@ class DislikesController < ApplicationController
 
     @dislike.destroy
 
-    redirect_to "/smacks", :notice => "Dislike deleted."
+    redirect_to :back, :notice => "Dislike deleted."
   end
 end

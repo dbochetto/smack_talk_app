@@ -31,7 +31,7 @@ class ResponsesController < ApplicationController
     @response.smack_id = params[:smack_id]
 
     if @response.save
-      redirect_to "/smacks", :notice => "Response created successfully."
+      redirect_to :back, :notice => "Response created successfully."
     else
       render 'new'
     end

@@ -6,7 +6,7 @@ class Dislike < ActiveRecord::Base
     belongs_to :smack
     belongs_to :response
 
-    def smack_or_resp
+def smack_or_resp
     if smack_id.nil? && response_id.nil?
       errors.add(:base, 'You must like a smack or a response')
     end

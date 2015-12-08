@@ -127,4 +127,7 @@ Rails.application.routes.draw do
   get "/users", :controller => "users", :action => "index"
   get "/users/:id", :controller => "users", :action => "show"
 
+  get "/leagues/:id/smacks", :controller => "leagues", :action=> "smacks"
+  get "/leagues/:id/publications", :controller => "leagues", :action=> "publications"
+
 end
