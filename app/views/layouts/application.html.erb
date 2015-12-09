@@ -47,8 +47,10 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> My Leagues <span class="caret"></span></a>
             <ul class="dropdown-menu">
+              <% if current_user.present? %>
               <% current_user.memberships.each do |membership| %>
               <li><a href="/leagues/<%= membership.league.id %>/smacks"> <%= membership.league.name %> </a></li>
+              <% end %>
               <% end %>
             </ul>
           </li>
@@ -91,7 +93,7 @@
             <i class="fa fa-trash-o"></i>
             Trash Talk
           </a>
-          <a href="/publications" class="list-group-item">
+          <a href="/leagues/<%= cookies[:current_league_id] %>/publications" class="list-group-item">
             <i class="fa fa-newspaper-o"></i>
             Publications
           </a>

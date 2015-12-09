@@ -49,11 +49,21 @@ class LeaguesController < ApplicationController
   end
 
   def smacks
-    @smacks = Smack.where(:league_id => params[:id])
+    cookies[:current_league_id] = params[:id]
+
+    @smacks = Smack.where(:league_id => params[:id]).reverse
   end
 
   def publications
-    @publications = Publication.where(:league_id => params[:id])
+    @publications = Publication.where(:league_id => params[:id]).reverse
+  end
+
+  def show_smacks
+    @smack = Smack.find(params[:id])
+  end
+
+  def show_publications
+    @publication = Publication.find(params[:id])
   end
 
 end

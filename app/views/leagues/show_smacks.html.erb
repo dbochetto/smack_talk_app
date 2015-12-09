@@ -1,0 +1,254 @@
+  <div class="page-header">
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"> <a href="/users/<%= @smack.user.id %>"> <img src="<%= @smack.user.avatar %>" width="60"> </a> <a href="/smacks/<%= @smack.id %>"> <%= @smack.title %> </a> <small> <%= time_ago_in_words(@smack.created_at) %> ago </small> </h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            <div class="well well-sm">
+              <% if @smack.video != nil %>
+              <p> <%= @smack.video %> </p>
+              <p> <%= @smack.body %> </p>
+              <% elsif @smack.image != nil %>
+              <p> <img src="<%= @smack.image %>" class="img-responsive"> </p>
+              <p> <%= @smack.body %> </p>
+              <% else %>
+              <p> <%= @smack.body %> </p>
+              <% end %>
+            </div>
+          </p>
+
+
+          <!-- Like / Dislike Code-->
+          <div class="row">
+            <ul class="list-inline">
+          <!-- Code for Likes-->
+              <li>
+                <% l_usernames = [] %>
+                <% @smack.likes.each do |like| %>
+                <% l_usernames.push(like.user.username) %>
+                <% end %>
+                <% like = @smack.likes.find_by({ :user_id => current_user.id }) %>
+                <% if like.present? %>
+                  <a href="/delete_like/<%= like.id %>" class="btn btn-link">
+                  <i class="fa fa-thumbs-up"></i> </a>
+                  (<%= @smack.likes.count %>)
+                  <% if l_usernames.count > 1 %>
+                  <%= l_usernames.to_sentence %> agree
+                  <% elsif l_usernames.count==1 %>
+                  <%= l_usernames.to_sentence %> agrees
+                  <% else %>
+                  <% end %>
+                <% else %>
+                  <form action="/create_like" method="post">
+                    <!-- Hidden input for authenticity token to protect from forgery -->
+                    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                    <!-- Label and input for smack_id -->
+                    <input type="hidden" id="smack_id" name="smack_id" placeholder="Smack" class="form-control" value="<%= @smack.id %>">
+
+                    <!-- Label and input for user_id -->
+                    <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+
+                    <button class="btn btn-link">
+                      <i class="fa fa-thumbs-o-up"> </i>
+                    </button>
+                    (<%= @smack.likes.count %>)
+                    <% if l_usernames.count > 1 %>
+                    <%= l_usernames.to_sentence %> agree
+                    <% elsif l_usernames.count==1 %>
+                    <%= l_usernames.to_sentence %> agrees
+                    <% end %>
+                  </form>
+                  <!-- End code for Likes-->
+                <% end %>
+              </li>
+
+
+                <!-- Code for Disikes-->
+                <li>
+                  <% d_usernames = [] %>
+                  <% @smack.dislikes.each do |dislike| %>
+                  <% d_usernames.push(dislike.user.username) %>
+                  <% end %>
+                  <% dislike = @smack.dislikes.find_by({ :user_id => current_user.id }) %>
+                  <% if dislike.present? %>
+                    <a href="/delete_dislike/<%= dislike.id %>" class="btn btn-link">
+                    <i class="fa fa-thumbs-down"></i> </a>
+                    (<%= @smack.dislikes.count %>)
+                    <% if d_usernames.count > 1 %>
+                    <%= d_usernames.to_sentence %> disagree
+                    <% elsif d_usernames.count==1 %>
+                    <%= d_usernames.to_sentence %> disagrees
+                    <% else %>
+                    <% end %>
+                  <% else %>
+                    <form action="/create_dislike" method="post">
+                      <!-- Hidden input for authenticity token to protect from forgery -->
+                      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                      <!-- Label and input for smack_id -->
+                      <input type="hidden" id="smack_id" name="smack_id" placeholder="Smack" class="form-control" value="<%= @smack.id %>">
+
+                      <!-- Label and input for user_id -->
+                      <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+
+                      <button class="btn btn-link">
+                        <i class="fa fa-thumbs-o-down"> </i>
+                      </button>
+                      (<%= @smack.dislikes.count %>)
+                      <% if d_usernames.count > 1 %>
+                      <%= d_usernames.to_sentence %> disagree
+                      <% elsif d_usernames.count==1 %>
+                      <%= d_usernames.to_sentence %> disagrees
+                      <% end %>
+                    </form>
+                    <!-- End code for Dislikes-->
+                  <% end %>
+                </li>
+            </ul>
+          </div>
+              <!-- End like/dislike code-->
+
+
+
+              <!-- Code for existing responses-->
+              <ul class="media-list">
+                <% @smack.responses.each do |response| %>
+                <li class="media">
+                  <div class="media-body">
+                    <h6 class="media-heading">
+                      <a href="/users/response.user_id"> <%= response.user.username %> </a> <small> (<%= time_ago_in_words(response.created_at) %> ago) </small>
+                    </h6>
+                    <p>
+                      <%= response.body %>
+                    </p>
+
+                    <!-- Code for likes for responses-->
+                    <div class="row">
+                      <ul class="list-inline">
+                        <li>
+                          <% l_resp_usernames = [] %>
+                          <% response.likes.each do |like| %>
+                          <% l_resp_usernames.push(like.user.username) %>
+                          <% end %>
+                          <% like = response.likes.find_by({ :user_id => current_user.id }) %>
+                          <% if like.present? %>
+                            <a href="/delete_like/<%= like.id %>" class="btn btn-link">
+                            <i class="fa fa-thumbs-up"></i> </a>
+                            (<%= response.likes.count %>)
+                            <% if l_resp_usernames.count > 1 %>
+                            <%= l_resp_usernames.to_sentence %> agree
+                            <% elsif l_resp_usernames.count==1 %>
+                            <%= l_resp_usernames.to_sentence %> agrees
+                            <% else %>
+                            <% end %>
+                           <% else %>
+                            <form action="/create_like" method="post">
+                              <!-- Hidden input for authenticity token to protect from forgery -->
+                              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                              <!-- Label and input for response_id -->
+                              <input type="hidden" id="response_id" name="response_id" class="form-control" value="<%= response.id %>">
+
+                              <!-- Label and input for user_id -->
+                              <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+
+                              <button class="btn btn-link">
+                                <i class="fa fa-thumbs-o-up"> </i>
+                              </button>
+                              (<%= response.likes.count %>)
+                              <% if l_resp_usernames.count > 1 %>
+                              <%= l_resp_usernames.to_sentence %> agree
+                              <% elsif l_resp_usernames.count==1 %>
+                              <%= l_resp_usernames.to_sentence %> agrees
+                              <% else %>
+                              <% end %>
+                            </form>
+                          <% end %>
+                        </li>
+
+                          <!-- End code for likes for responses-->
+                          <!-- Code for dislikes for responses-->
+
+                          <li>
+                            <% d_resp_usernames = [] %>
+                            <% response.dislikes.each do |dislike| %>
+                            <% d_resp_usernames.push(dislike.user.username) %>
+                            <% end %>
+                            <% dislike = response.dislikes.find_by({ :user_id => current_user.id }) %>
+                            <% if dislike.present? %>
+                              <a href="/delete_dislike/<%= dislike.id %>" class="btn btn-link">
+                              <i class="fa fa-thumbs-down"></i> </a>
+                              (<%= response.dislikes.count %>)
+                              <% if d_resp_usernames.count > 1 %>
+                              <%= d_resp_usernames.to_sentence %> disagree
+                              <% elsif d_resp_usernames.count==1 %>
+                              <%= d_resp_usernames.to_sentence %> disagrees
+                              <% else %>
+                              <% end %>
+                            <% else %>
+                              <form action="/create_dislike" method="post">
+                                <!-- Hidden input for authenticity token to protect from forgery -->
+                                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                                <!-- Label and input for response_id -->
+                                <input type="hidden" id="response_id" name="response_id" class="form-control" value="<%= response.id %>">
+
+                                <!-- Label and input for user_id -->
+                                <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+
+                                <button class="btn btn-link">
+                                  <i class="fa fa-thumbs-o-down"> </i>
+                                </button>
+                                (<%= response.dislikes.count %>)
+                                <% if d_resp_usernames.count > 1 %>
+                                <%= d_resp_usernames.to_sentence %> disagree
+                                <% elsif d_resp_usernames.count==1 %>
+                                <%= d_resp_usernames.to_sentence %> disagrees
+                                <% else %>
+                                <% end %>
+                              </form>
+                            <% end %>
+                              <!-- End code for dislikes for responses-->
+                          </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <% end %>
+                      <!-- End code for existing responses-->
+
+
+                      <!-- Code for new response form-->
+                <li class="media">
+                  <div class="media-body">
+                    <form action="/create_response" method="post">
+                      <!-- Hidden input for authenticity token to protect from forgery -->
+                      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                      <!-- Label and input for body -->
+                      <input type="text" id="body" name="body" placeholder="Respond to this smack..." class="form-control">
+
+                      <!-- Label and input for user_id -->
+                      <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+
+                      <!-- Label and input for smack_id -->
+                      <input type="hidden" id="smack_id" name="smack_id" placeholder="Smack" class="form-control" value="<%= @smack.id %>">
+                    </form>
+                  </div>
+                </li>
+                    <!-- End code for new response form-->
+              </ul>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>

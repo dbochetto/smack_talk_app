@@ -1,6 +1,12 @@
 class MembershipsController < ApplicationController
   def index
-    @memberships = Membership.all
+    if current_user.memberships.count > 0
+      cookies[:current_league_id] = current_user.memberships.first.league_id
+    else
+      redirect_to "/memberships/new"
+    end
+
+    @memberships = current_user.memberships
   end
 
   def show

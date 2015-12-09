@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root "smacks#index"
+  root "memberships#index"
 
   # Routes for the Dislike resource:
   # CREATE
@@ -128,6 +128,8 @@ Rails.application.routes.draw do
   get "/users/:id", :controller => "users", :action => "show"
 
   get "/leagues/:id/smacks", :controller => "leagues", :action=> "smacks"
+  get "/leagues/:id/smacks/:id", :controller => "leagues", :action=> "show_smacks"
   get "/leagues/:id/publications", :controller => "leagues", :action=> "publications"
+  get "/leagues/:id/publications/:id", :controller => "leagues", :action=> "show_publications"
 
 end

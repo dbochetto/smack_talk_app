@@ -10,7 +10,7 @@ class PublicationsController < ApplicationController
   end
 
   def index
-    @publications = Publication.all
+    @publications = Publication.all.reverse
   end
 
   def show
