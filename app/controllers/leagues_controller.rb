@@ -4,6 +4,7 @@ class LeaguesController < ApplicationController
 
   before_action :current_user_must_be_owner_of_publication, :only => [:edit_publication, :update_publication, :destroy_publication]
 
+
   def current_user_must_be_owner_of_smack
     @smack = Smack.find(params[:id])
     if current_user != @smack.user
@@ -17,6 +18,7 @@ class LeaguesController < ApplicationController
       redirect_to :back, :alert => "You can only edit your own trash talk"
     end
   end
+
 
 
 
@@ -71,8 +73,9 @@ class LeaguesController < ApplicationController
 
   #******WITHIN LEAGUE RCAV******
   #SMACKS
-
   def smacks
+    cookies[:current_league_id] = params[:id]
+
     @smacks = Smack.where(:league_id => params[:id]).reverse
   end
 
