@@ -40,7 +40,12 @@ class LeaguesController < ApplicationController
     @league.user_id = params[:user_id]
 
     if @league.save
-      redirect_to "/leagues", :notice => "League created successfully."
+      first_member = Membership.new
+      first_member.user_id = current_user.id
+      first_member.league_id = @league.id
+      first_member.save
+
+      redirect_to "/memberships", :notice => "League created successfully."
     else
       render 'new'
     end
