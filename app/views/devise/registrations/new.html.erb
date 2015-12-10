@@ -7,7 +7,7 @@
         </div>
 
         <div class="panel-body">
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-horizontal", role: "form" }) do |f| %>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: "true", class: "form-horizontal", role: "form" }) do |f| %>
           <%= devise_error_messages! %>
 
           <div class="form-group">
@@ -34,7 +34,7 @@
           <div class="form-group">
             <%= f.label :avatar, class: "col-sm-2 control-label" %>
             <div class="col-sm-10">
-              <%= f.text_field :avatar, autofocus: true, class: "form-control" %>
+              <%= f.file_field :avatar, autofocus: true, class: "form-control" %>
             </div>
           </div>
 

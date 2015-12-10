@@ -13,4 +13,6 @@ class User < ActiveRecord::Base
          has_many :responses, :dependent => :destroy
          has_many :memberships, :dependent => :destroy
 
+         mount_uploader :avatar, AvatarUploader
+
 end
