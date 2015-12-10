@@ -15,11 +15,20 @@
       <tr>
         <td><img src="<%= user.avatar %>" width="75"></td>
         <td><%= user.username %></td>
-
+          <% if current_user.id == user.id %>
+            <% membership = Membership.where({ :user_id => current_user.id, :league_id => params[:id]}) %>
+        <td>
+            <a href="/delete_membership/<%= membership.first.id %>" class="btn btn-danger">Leave this league</a>
+        </td>
         <td>
           <a href="/users/<%= user.id %>" class="btn btn-primary">Show</a>
         </td>
-
+          <% else %>
+        <td> </td>
+        <td colspan="2">
+          <a href="/users/<%= user.id %>" class="btn btn-primary">Show</a>
+        </td>
+          <% end %>
       </tr>
       <% end %>
     </table>
