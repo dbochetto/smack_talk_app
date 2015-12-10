@@ -54,3 +54,14 @@
       </div>
       </div>
 
+<% if current_user.id == @publication.user.id %>
+    <div class="btn-group btn-group-justified">
+      <a href="/leagues/<%= cookies[:current_league_id] %>/publications/<%= @publication.id %>/edit" class="btn btn-warning">Edit</a>
+      <a href="/leagues/<%= cookies[:current_league_id] %>/delete_publication/<%= @publication.id %>" class="btn btn-danger">Delete</a>
+      <a href="/leagues/<%= cookies[:current_league_id] %>/publications" class="btn btn-primary">Back</a>
+    </div>
+  <% else %>
+    <div class="btn-group btn-group-justified">
+      <a href="/leagues/<%= cookies[:current_league_id] %>/publications" class="btn btn-primary">Back</a>
+    </div>
+  <% end %>

@@ -1,7 +1,6 @@
 <div class="page-header">
   <h1>
-    Memberships
-    <a href="/memberships/new" class="btn btn-lg btn-success">New Membership</a>
+    My Fantasy Leagues
   </h1>
 </div>
 
@@ -9,20 +8,13 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>League</th>
-        <th>User</th>
-        <th>Actions</th>
+        <th>League Name</th>
       </tr>
 
       <% @memberships.each do |membership| %>
+      <% league_each = League.find_by({ :id => membership.league_id}) %>
       <tr>
-        <td><%= membership.league_id %></td>
-        <td><%= membership.user_id %></td>
-        <td>
-          <a href="/memberships/<%= membership.id %>" class="btn btn-primary">Show</a>
-          <a href="/memberships/<%= membership.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_membership/<%= membership.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
+        <td> <a href="/leagues/<%= league_each.id %>/smacks"> <%= league_each.name %> </a> </td>
       </tr>
       <% end %>
     </table>

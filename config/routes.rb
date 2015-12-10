@@ -127,9 +127,27 @@ Rails.application.routes.draw do
   get "/users", :controller => "users", :action => "index"
   get "/users/:id", :controller => "users", :action => "show"
 
+
+  # ****Routes for WITHIN LEAGUE ACTIONS*****
+  #SMACKS
   get "/leagues/:id/smacks", :controller => "leagues", :action=> "smacks"
+  get "/leagues/:id/smacks/new", :controller => "leagues", :action => "new_smack"
+  post "/leagues/:id/create_smack", :controller => "leagues", :action => "create_smack"
   get "/leagues/:id/smacks/:id", :controller => "leagues", :action=> "show_smacks"
+  get "/leagues/:id/smacks/:id/edit", :controller => "leagues", :action => "edit_smack"
+  post "/leagues/:id/update_smack/:id", :controller => "leagues", :action => "update_smack"
+  get "/leagues/:id/delete_smack/:id", :controller => "leagues", :action => "destroy_smack"
+  #PUBLICATIONS
   get "/leagues/:id/publications", :controller => "leagues", :action=> "publications"
+  get "/leagues/:id/publications/new", :controller => "leagues", :action => "new_publication"
+  post "/leagues/:id/create_publication", :controller => "leagues", :action => "create_publication"
   get "/leagues/:id/publications/:id", :controller => "leagues", :action=> "show_publications"
+  get "/leagues/:id/publications/:id/edit", :controller => "leagues", :action => "edit_publication"
+  post "/leagues/:id/update_publication/:id", :controller => "leagues", :action => "update_publication"
+  get "/leagues/:id/delete_publication/:id", :controller => "leagues", :action => "destroy_publication"
+  #USERS
+  get "/leagues/:id/users", :controller => "leagues", :action=> "users"
+  get "/leagues/:id/users/:id", :controller => "leagues", :action=> "show_users"
+
 
 end

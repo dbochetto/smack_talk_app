@@ -251,4 +251,18 @@
     </div>
 
   </div>
+
+  <% if current_user.id == @smack.user.id %>
+    <div class="btn-group btn-group-justified">
+      <a href="/leagues/<%= cookies[:current_league_id] %>/smacks/<%= @smack.id %>/edit" class="btn btn-warning">Edit</a>
+      <a href="/leagues/<%= cookies[:current_league_id] %>/delete_smack/<%= @smack.id %>" class="btn btn-danger">Delete</a>
+      <a href="/leagues/<%= cookies[:current_league_id] %>/smacks" class="btn btn-primary">Back</a>
+    </div>
+  <% else %>
+    <div class="btn-group btn-group-justified">
+      <a href="/leagues/<%= cookies[:current_league_id] %>/smacks" class="btn btn-primary">Back</a>
+    </div>
+  <% end %>
+
+
   </div>

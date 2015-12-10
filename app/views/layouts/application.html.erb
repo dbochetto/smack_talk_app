@@ -42,8 +42,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/smacks">Trash Talk</a></li>
-          <li><a href="/publications">Publications</a></li>
+          <li><a href="/leagues/<%= cookies[:current_league_id] %>/smacks">Trash Talk</a></li>
+          <li><a href="/leagues/<%= cookies[:current_league_id] %>/publications">Publications</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> My Leagues <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -89,7 +89,7 @@
     <div class="row">
       <div class="col-md-3 hidden-xs hidden-sm page-header">
         <div class="list-group">
-          <a href="/smacks" class="list-group-item">
+          <a href="/leagues/<%= cookies[:current_league_id] %>/smacks" class="list-group-item">
             <i class="fa fa-trash-o"></i>
             Trash Talk
           </a>
@@ -97,7 +97,7 @@
             <i class="fa fa-newspaper-o"></i>
             Publications
           </a>
-          <a href="/users" class="list-group-item">
+          <a href="/leagues/<%= cookies[:current_league_id] %>/users" class="list-group-item">
             <i class="fa fa-users"></i>
             League Members
           </a>
