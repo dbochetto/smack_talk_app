@@ -4,6 +4,13 @@ class LeaguesController < ApplicationController
 
   before_action :current_user_must_be_owner_of_publication, :only => [:edit_publication, :update_publication, :destroy_publication]
 
+  before_action :must_be_member_of_league_for_index, :only => [:smacks, :publications]
+
+  before_action :must_be_member_of_league_for_smack, :only => [:show_smacks, :new_smack, :edit_smack]
+
+  before_action :must_be_member_of_league_for_publication, :only => [:show_publications]
+
+  #Authentications for editing / deleting smacks and publications:
 
   def current_user_must_be_owner_of_smack
     @smack = Smack.find(params[:id])
@@ -19,8 +26,36 @@ class LeaguesController < ApplicationController
     end
   end
 
+  #End Authentications for editing / deleting smacks and publications:
+
+  #Authentications for League Members:
+
+  def must_be_member_of_league_for_index
+    @league = League.find(params[:id])
+
+    if current_user.memberships.find_by({:league_id => @league.id}) == nil
+      redirect_to "/memberships", :alert => "You are not a member of this league. Choose one of your leagues to visit"
+    end
+  end
+
+  def must_be_member_of_league_for_smack
+    @league = Smack.find(params[:id]).league
+
+    if current_user.memberships.find_by({:league_id => @league.id}) == nil
+      redirect_to "/memberships", :alert => "You are not a member of this league. Choose one of your leagues to visit"
+    end
+  end
 
 
+  def must_be_member_of_league_for_publication
+    @league = Publication.find(params[:id]).league
+
+    if current_user.memberships.find_by({:league_id => @league.id}) == nil
+      redirect_to "/memberships", :alert => "You are not a member of this league. Choose one of your leagues to visit"
+    end
+  end
+
+  #End Authentications for League Members:
 
   def index
     @leagues = League.all
