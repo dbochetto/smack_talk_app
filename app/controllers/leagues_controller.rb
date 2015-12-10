@@ -73,8 +73,6 @@ class LeaguesController < ApplicationController
   #SMACKS
 
   def smacks
-    cookies[:current_league_id] = params[:id]
-
     @smacks = Smack.where(:league_id => params[:id]).reverse
   end
 
@@ -196,6 +194,8 @@ class LeaguesController < ApplicationController
   end
 
   def show_users
+    cookies[:current_league_id] = params[:id]
+
     @user = User.find(params[:id])
   end
 
