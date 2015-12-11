@@ -129,7 +129,7 @@
                 <li class="media">
                   <div class="media-body">
                     <h6 class="media-heading">
-                      <a href="/users/response.user_id"> <%= response.user.username %> </a> <small> (<%= time_ago_in_words(response.created_at) %> ago) </small>
+                      <a href="/users/<%= response.user_id %>"> <%= response.user.username %> </a> <small> (<%= time_ago_in_words(response.created_at) %> ago) </small>
                     </h6>
                     <p>
                       <%= response.body %>

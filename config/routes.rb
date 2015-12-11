@@ -8,12 +8,12 @@ Rails.application.routes.draw do
   post "/create_dislike", :controller => "dislikes", :action => "create"
 
   # READ
-  get "/dislikes", :controller => "dislikes", :action => "index"
-  get "/dislikes/:id", :controller => "dislikes", :action => "show"
+  #get "/dislikes", :controller => "dislikes", :action => "index"
+  #get "/dislikes/:id", :controller => "dislikes", :action => "show"
 
   # UPDATE
-  get "/dislikes/:id/edit", :controller => "dislikes", :action => "edit"
-  post "/update_dislike/:id", :controller => "dislikes", :action => "update"
+  #get "/dislikes/:id/edit", :controller => "dislikes", :action => "edit"
+  #post "/update_dislike/:id", :controller => "dislikes", :action => "update"
 
   # DELETE
   get "/delete_dislike/:id", :controller => "dislikes", :action => "destroy"
@@ -25,12 +25,12 @@ Rails.application.routes.draw do
   post "/create_like", :controller => "likes", :action => "create"
 
   # READ
-  get "/likes", :controller => "likes", :action => "index"
-  get "/likes/:id", :controller => "likes", :action => "show"
+  #get "/likes", :controller => "likes", :action => "index"
+  #get "/likes/:id", :controller => "likes", :action => "show"
 
   # UPDATE
-  get "/likes/:id/edit", :controller => "likes", :action => "edit"
-  post "/update_like/:id", :controller => "likes", :action => "update"
+  #get "/likes/:id/edit", :controller => "likes", :action => "edit"
+  #post "/update_like/:id", :controller => "likes", :action => "update"
 
   # DELETE
   get "/delete_like/:id", :controller => "likes", :action => "destroy"
@@ -42,15 +42,15 @@ Rails.application.routes.draw do
   post "/create_response", :controller => "responses", :action => "create"
 
   # READ
-  get "/responses", :controller => "responses", :action => "index"
-  get "/responses/:id", :controller => "responses", :action => "show"
+  #get "/responses", :controller => "responses", :action => "index"
+  #get "/responses/:id", :controller => "responses", :action => "show"
 
   # UPDATE
   get "/responses/:id/edit", :controller => "responses", :action => "edit"
   post "/update_response/:id", :controller => "responses", :action => "update"
 
   # DELETE
-  get "/delete_response/:id", :controller => "responses", :action => "destroy"
+  #get "/delete_response/:id", :controller => "responses", :action => "destroy"
   #------------------------------
 
   # Routes for the Smack resource:
@@ -59,8 +59,8 @@ Rails.application.routes.draw do
   post "/create_smack", :controller => "smacks", :action => "create"
 
   # READ
-  get "/smacks", :controller => "smacks", :action => "index"
-  get "/smacks/:id", :controller => "smacks", :action => "show"
+  #get "/smacks", :controller => "smacks", :action => "index"
+  #get "/smacks/:id", :controller => "smacks", :action => "show"
 
   # UPDATE
   get "/smacks/:id/edit", :controller => "smacks", :action => "edit"
@@ -110,12 +110,12 @@ Rails.application.routes.draw do
   post "/create_league", :controller => "leagues", :action => "create"
 
   # READ
-  get "/leagues", :controller => "leagues", :action => "index"
-  get "/leagues/:id", :controller => "leagues", :action => "show"
+  #get "/leagues", :controller => "leagues", :action => "index"
+  #get "/leagues/:id", :controller => "leagues", :action => "show"
 
   # UPDATE
-  get "/leagues/:id/edit", :controller => "leagues", :action => "edit"
-  post "/update_league/:id", :controller => "leagues", :action => "update"
+  #get "/leagues/:id/edit", :controller => "leagues", :action => "edit"
+  #post "/update_league/:id", :controller => "leagues", :action => "update"
 
   # DELETE
   get "/delete_league/:id", :controller => "leagues", :action => "destroy"
