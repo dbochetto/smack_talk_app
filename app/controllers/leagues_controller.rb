@@ -4,11 +4,11 @@ class LeaguesController < ApplicationController
 
   before_action :current_user_must_be_owner_of_publication, :only => [:edit_publication, :update_publication, :destroy_publication]
 
-  before_action :must_be_member_of_league_for_index, :only => [:smacks, :publications]
+  before_action :must_be_member_of_league_for_index, :only => [:smacks, :publications, :new_smack, :new_publication]
 
-  before_action :must_be_member_of_league_for_smack, :only => [:show_smacks, :new_smack, :edit_smack]
+  before_action :must_be_member_of_league_for_smack, :only => [:show_smacks, :edit_smack]
 
-  before_action :must_be_member_of_league_for_publication, :only => [:show_publications, :new_publication, :edit_publication]
+  before_action :must_be_member_of_league_for_publication, :only => [:show_publications, :edit_publication]
 
   #Authentications for editing / deleting smacks and publications:
 
