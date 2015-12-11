@@ -2,9 +2,21 @@
 
 class AvatarUploader < CarrierWave::Uploader::Base
 
+  def right_orientation
+    if %w(jpg jpeg gif png svg bmp).include?(file.extension.downcase)
+      manipulate! do |img|
+        img.auto_orient
+        img
+      end
+    end
+  end
+
+  process :right_orientation
+
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file

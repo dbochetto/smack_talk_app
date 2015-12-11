@@ -8,7 +8,7 @@ class LeaguesController < ApplicationController
 
   before_action :must_be_member_of_league_for_smack, :only => [:show_smacks, :new_smack, :edit_smack]
 
-  before_action :must_be_member_of_league_for_publication, :only => [:show_publications]
+  before_action :must_be_member_of_league_for_publication, :only => [:show_publications, :new_publication, :edit_publication]
 
   #Authentications for editing / deleting smacks and publications:
 
